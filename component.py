@@ -74,7 +74,7 @@ def page_style():
         st.image("photos/Round_Profile_Photo.png", width=150)
 
         st.markdown("""
-            ## Phone Number Auditor
+            ## Created by Fahmi Zainal
             **A web application designed for sanitizing, deduplicating, and analyzing phone number datasets.**
         """)
 
