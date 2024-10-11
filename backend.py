@@ -1,5 +1,3 @@
-
-
 def sanitize_phone_numbers(df):
     # Ensure phonenum column is of string type
     df['phonenum'] = df['phonenum'].astype(str)
