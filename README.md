@@ -1,16 +1,16 @@
-# **📞 Phone Number Auditor 📞**
+# **TeleData_Auditor_Project📞**
 
 <!-- Badge to Visit Project -->
 <div align="center"> 
     <a href="https://your-project-url.streamlit.app/">  <!-- Replace with your actual project URL -->
-        <img src="https://img.shields.io/badge/Visit%20Phone%20Number%20Auditor-brightgreen?style=for-the-badge&logo=streamlit" alt="Visit Phone Number Auditor"/>
+        <img src="https://img.shields.io/badge/Visit%20TeleData%20Auditor-brightgreen?style=for-the-badge&logo=streamlit" alt="Visit TeleData_Auditor_Project"/>
     </a>
 </div>
 
 ---
 
 ## **📋 Overview**
-The **Phone Number Auditor** is a web application designed to sanitize, deduplicate, and analyze phone number datasets. This project leverages Streamlit to provide an interactive platform for users to manage their phone number data efficiently, ensuring cleanliness and consistency in data handling.
+The **TeleData_Auditor_Project** is a web application designed to sanitize, deduplicate, and analyze phone number datasets. This project leverages Streamlit to provide an interactive platform for users to manage their phone number data efficiently, ensuring cleanliness and consistency in data handling.
 
 ---
 
