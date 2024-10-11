@@ -58,20 +58,20 @@ def page_style():
     """
     
     # Set the page configuration
-    icon = Image.open('photos/My_Photo/Round_Profile_Photo.jpg')
+    icon = Image.open('photos/Round_Profile_Photo.png')
     st.set_page_config(page_title="Fahmi Zainal", page_icon=icon, layout="wide")
 
     # Apply custom styles to the page
     st.markdown(custom_style, unsafe_allow_html=True)
 
     # Display the main background image
-    image = Image.open('photos/My_Photo/Background_Photo.png')
+    image = Image.open('photos/Background_Photo.png')
     st.image(image)
 
     # Sidebar content
     with st.sidebar:
         # Display the round profile picture at the top of the sidebar
-        st.image("photos/My_Photo/Round_Profile_Photo.jpg", width=150)
+        st.image("photos/Round_Profile_Photo.png", width=150)
 
         st.markdown("""
             ## Fahmi Zainal

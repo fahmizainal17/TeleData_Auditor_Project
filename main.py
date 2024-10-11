@@ -7,67 +7,82 @@ page_style()
 
 st.title("Phone Number Auditor 📞")
 
-# Step 1: Upload CSV file
-uploaded_file = st.file_uploader("Upload a CSV file containing phone numbers", type=["csv"])
+# Initialize session state variables
+if 'df_original' not in st.session_state:
+    st.session_state['df_original'] = None
+if 'df_sanitized' not in st.session_state:
+    st.session_state['df_sanitized'] = None
+if 'df_deduped' not in st.session_state:
+    st.session_state['df_deduped'] = None
 
-if uploaded_file is not None:
-    # Read the uploaded CSV file
-    df = pd.read_csv(uploaded_file)
+# Step 1: Upload CSV files
+uploaded_files = st.file_uploader("Upload CSV files containing phone numbers", accept_multiple_files=True, type=["csv"])
+
+if uploaded_files:
+    # Read the uploaded CSV files and concatenate them into a single DataFrame
+    dataframes = []
+    for uploaded_file in uploaded_files:
+        df = pd.read_csv(uploaded_file)
+        dataframes.append(df)
+
+    # Concatenate all DataFrames into one
+    df = pd.concat(dataframes, ignore_index=True)
 
     if 'phonenum' in df.columns:
-        st.success("File uploaded successfully!")
+        st.success("Files uploaded successfully!")
+
+        # Store the original DataFrame in session state
+        st.session_state['df_original'] = df
 
         # Display the initial DataFrame
         st.subheader("Initial DataFrame")
-        st.write(df)
+        st.write(st.session_state['df_original'])
 
         # Step 2: Audit Button
-        if st.button("Audit"):
-            df = sanitize_phone_numbers(df)
+        if st.button("Sanitize Phone Numbers"):
+            # Apply the sanitize_phone_numbers function to the DataFrame
+            st.session_state['df_sanitized'] = sanitize_phone_numbers(st.session_state['df_original'])
             st.subheader("Sanitized Phone Numbers")
-            st.write(df)
-
-            # Display counts before and after dropping duplicates
-            initial_count = len(df)
-            df_deduped = df.drop_duplicates(subset=['phonenum'])
-            after_count = len(df_deduped)
-
-            st.write(f"Count of phone numbers before deduplication: {initial_count}")
-            st.write(f"Count of phone numbers after deduplication: {after_count}")
-
-            # Update the DataFrame to the deduped version
-            df = df_deduped
+            st.write(st.session_state['df_sanitized'])
 
         # Step 3: Drop Duplicates Button
         if st.button("Drop Duplicates"):
-            initial_count = len(df)
-            df_deduped = df.drop_duplicates(subset=['phonenum'])
-            after_count = len(df_deduped)
+            initial_count = len(st.session_state['df_sanitized']) if st.session_state['df_sanitized'] is not None else 0
+            st.session_state['df_deduped'] = st.session_state['df_sanitized'].drop_duplicates(subset=['phonenum'])
+            after_count = len(st.session_state['df_deduped'])
 
             st.write(f"Count of phone numbers before deduplication: {initial_count}")
             st.write(f"Count of phone numbers after deduplication: {after_count}")
 
-            # Update the DataFrame to the deduped version
-            df = df_deduped
-
         # Step 4: Last Audit Button
         if st.button("Last Audit (9 to 13 characters)"):
-            last_audit_df = df[df['phonenum'].astype(str).str.len().between(9, 13)]
-            st.subheader("Last Audit Result (9 to 13 characters)")
-            st.write(last_audit_df)
+            df_deduped = st.session_state['df_deduped']
+
+            if df_deduped is not None:  # Ensure df_deduped is defined
+                last_audit_df = df_deduped[df_deduped['phonenum'].astype(str).str.len().between(9, 13)]
+
+                # Check if any phone numbers were found
+                if last_audit_df.empty:
+                    st.warning("No phone numbers found with lengths between 9 and 13 characters.")
+                else:
+                    # Group by the length of the phone numbers
+                    last_audit_grouped = last_audit_df.groupby(last_audit_df['phonenum'].astype(str).str.len()).phonenum.apply(list).reset_index(name='phonenumber_character_len')
+
+                    st.subheader("Last Audit Result (9 to 13 characters)")
+                    st.write(last_audit_grouped)
+            else:
+                st.warning("Please sanitize or drop duplicates first.")
 
         # Step 5: Download Button
-        if st.button("Download Sanitized DataFrame"):
-            # Create a CSV from the DataFrame
-            csv = df.to_csv(index=False).encode('utf-8')
+        if st.session_state['df_deduped'] is not None:  # Check if df_deduped exists to prevent errors
+            csv = st.session_state['df_deduped'].to_csv(index=False).encode('utf-8')
             st.download_button(
-                label="Download CSV",
+                label="Download Sanitized DataFrame",
                 data=csv,
                 file_name="sanitized_phone_numbers.csv",
                 mime="text/csv"
             )
     else:
-        st.error("The uploaded CSV file must contain a 'phonenum' column.")
+        st.error("The uploaded CSV files must contain a 'phonenum' column.")
 else:
-    st.info("Please upload a CSV file to get started.")
-
+    st.info("Please upload CSV files to get started.")
