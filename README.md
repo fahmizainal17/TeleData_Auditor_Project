@@ -3,7 +3,7 @@
 <!-- Badge to Visit Project -->
 <div align="center"> 
     <a href="https://your-project-url.streamlit.app/">  <!-- Replace with your actual project URL -->
-        <img src="https://img.shields.io/badge/Visit%20Phone%20Number%20Auditor-brightgreen?style=for-the-badge&logo=streamlit" alt="Visit TeleData_Auditor_Project"/>
+        <img src="https://img.shields.io/badge/Visit%20TeleData%20Auditor-brightgreen?style=for-the-badge&logo=streamlit" alt="Visit TeleData_Auditor_Project"/>
     </a>
 </div>
 
