@@ -95,3 +95,25 @@ def page_style():
         </a>
         """
         st.markdown(new_tab_button, unsafe_allow_html=True)
+
+        st.markdown("""---""")
+
+        # LinkedIn button with logo
+        linkedin_url = "https://www.linkedin.com/in/fahmizainal17"
+        st.markdown(f"""
+            <a href="{linkedin_url}" target="_blank">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 10px 20px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 8px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/1200px-LinkedIn_icon.svg.png" width="16" style="vertical-align: middle;"> Connect on LinkedIn
+                </button>
+            </a>
+        """, unsafe_allow_html=True)
+
+        # GitHub button with logo
+        github_url = "https://github.com/fahmizainal17"
+        st.markdown(f"""
+            <a href="{github_url}" target="_blank">
+                <button style="background-color: #333; color: white; border: none; padding: 10px 20px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 8px;">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16" style="vertical-align: middle;"> Check out my GitHub
+                </button>
+            </a>
+        """, unsafe_allow_html=True)
