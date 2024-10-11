@@ -11,10 +11,10 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 def page_style():
-    # Encode the local GIF to base64
-    sidebar_gif_base64 = get_base64_of_bin_file('assets/Background_Phone.jpg')
+    # Encode the local image to base64
+    sidebar_image_base64 = get_base64_of_bin_file('assets/Background_Phone.jpg')
 
-    # Apply custom styles, including the sidebar background GIF
+    # Apply custom styles, including the sidebar background image
     custom_style = f"""
         <style>
             #MainMenu {{visibility: hidden;}}
@@ -24,7 +24,7 @@ def page_style():
             /* Sidebar background with a dark overlay */
             [data-testid="stSidebar"] > div:first-child {{
                 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                                  url("data:image/gif;base64,{sidebar_gif_base64}");
+                                  url("data:image/jpeg;base64,{sidebar_image_base64}");
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -59,7 +59,7 @@ def page_style():
     
     # Set the page configuration
     icon = Image.open('photos/Round_Profile_Photo.png')
-    st.set_page_config(page_title="Fahmi Zainal", page_icon=icon, layout="wide")
+    st.set_page_config(page_title="Phone Number Auditor", page_icon=icon, layout="wide")
 
     # Apply custom styles to the page
     st.markdown(custom_style, unsafe_allow_html=True)
@@ -74,29 +74,23 @@ def page_style():
         st.image("photos/Round_Profile_Photo.png", width=150)
 
         st.markdown("""
-            ## Fahmi Zainal
-            **Data Scientist | Analytics Engineer | Survey | Digital Marketing | Software Development | ML & AI | ETL | Databricks | API Deployment | Azure & AWS DevOps Practitioner | Army Reserved Officer 🎖**
+            ## Phone Number Auditor
+            **A web application designed for sanitizing, deduplicating, and analyzing phone number datasets.**
         """)
 
         st.markdown("""
-        ### Top Skills
-        - **Data Analytics, EDA and Modelling**
-        - **Power BI and Tableau Dashboarding**
-        - **Python (Programming Language)**
-        - **SQL Querying and Modelling**
-        - **Machine Learning (ML)**
-        - **RESTful APIs Designing**
-        - **Databricks**
-        - **AWS(S3, ECS, EC2)**
-        - **Google Cloud Platform (GCP) APIs**
-        - **TensorFlow and Pytorch Framework**
+        ### Key Features
+        - **Data Upload:** Easily upload CSV files containing phone numbers.
+        - **Data Sanitization:** Automatically clean and format phone numbers.
+        - **Deduplication:** Remove duplicate entries from your dataset.
+        - **Visualization:** Analyze and visualize the distribution of phone numbers.
         """)
 
         # HTML and JavaScript to open YouTube in a new tab
         new_tab_button = """
         <a href="https://www.youtube.com/watch?v=VeUiVCb7ZmQ?si=GzSBUP3zs1hEkigI" target="_blank">
             <button style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; text-align: center; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 8px;">
-                🎵 Play Music while Reading
+                🎵 Play Music while Using the App
             </button>
         </a>
         """
