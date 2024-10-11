@@ -12,7 +12,7 @@ def get_base64_of_bin_file(bin_file):
 
 def page_style():
     # Encode the local GIF to base64
-    sidebar_gif_base64 = get_base64_of_bin_file('assets/background_sidebar.jpg')
+    sidebar_gif_base64 = get_base64_of_bin_file('assets/Background_Phone.jpg')
 
     # Apply custom styles, including the sidebar background GIF
     custom_style = f"""
