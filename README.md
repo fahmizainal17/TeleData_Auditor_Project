@@ -2,7 +2,7 @@
 
 <!-- Badge to Visit Project -->
 <div align="center"> 
-    <a href="https://teledata-auditor.streamlit.app/">  <!-- Replace with your actual project URL -->
+    <a href="https://teledata-auditor.streamlit.app/">
         <img src="https://img.shields.io/badge/Visit%20TeleData%20Auditor-brightgreen?style=for-the-badge&logo=streamlit" alt="Visit TeleData_Auditor_Project"/>
     </a>
 </div>
