@@ -1,4 +1,4 @@
-# **TeleData_Auditor_Project 📞**
+# **TeleData_Auditor_Project 📞** [![wakatime](https://wakatime.com/badge/user/ae82a943-125e-489a-a656-e35fe84d587b/project/e2f8c604-3da0-409e-b9bf-da1166394251.svg)](https://wakatime.com/badge/user/ae82a943-125e-489a-a656-e35fe84d587b/project/e2f8c604-3da0-409e-b9bf-da1166394251)
 
 <!-- Badge to Visit Project -->
 <div align="center"> 
